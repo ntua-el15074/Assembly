@@ -1,3 +1,3 @@
 # Circuit Simulator for a School Project
 ## The Circuit in question: 
-![alt text](circuit.png)
+<img src="circuit.png" width="128"/>
