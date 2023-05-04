@@ -1,0 +1,85 @@
+
+START:
+	IN 10H
+	MVI A,00H		
+	LXI H,0900H		
+	JMP SAVE
+SAVE:
+	MOV M,A		
+	INR A			
+	INX H			
+	CPI 10H		
+	JNZ SAVE		
+
+
+	MVI B,00H		
+LOAD_NEXT:
+	MOV A,M		
+	MVI D,09H		
+CYCLE_THROUGH:		
+	DCR D			
+	JZ NEXT		
+	RRC			
+	JNC CYCLE_THROUGH	
+	INR B			
+	JMP CYCLE_THROUGH	
+NEXT:
+	DCR L			
+	JNZ LOAD_NEXT		
+PRINT_B:
+	MOV A,B
+	STA 3000H
+
+	MVI D,00H
+	MVI E,7FH
+CHECK:
+	MOV A,M
+	CPI 10H
+	JC NEXT_C
+	CPI 61H
+	JNC NEXT_C
+	INR D
+NEXT_C:
+	INR L
+	DCR E
+	JZ END
+	JMP CHECK
+END:
+	HLT
+END
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
