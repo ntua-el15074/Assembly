@@ -7,13 +7,13 @@
 
 ### the number of the current row is as follows:
 
-row 1 = 1111 1110
-row 2 = 1111 1101
-        .
-        .
-        .
-        .
-row 8 = 0111 1111
+### row 1 = 1111 1110
+### row 2 = 1111 1101
+###         .
+###         .
+###         .
+###         .
+### row 8 = 0111 1111
 
 ### the coding for each key in a row is as follows:
 <img src="coding.png" width="300"/>
