@@ -1,0 +1,19 @@
+FILL MACRO RP,X,K
+    PUSH PSW
+    PUSH H
+    PUSH D
+    PUSH B
+    MOV H,RP
+    ;MOV H,R
+    ;MOV L,P
+LOOP
+    MOV M,K
+    INX H
+    DCR X
+    JNZ LOOP
+    MOV M,K
+    PUSH B
+    PUSH D
+    PUSH H
+    PUSH PSW
+ENDM
