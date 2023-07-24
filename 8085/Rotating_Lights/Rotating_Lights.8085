@@ -1,0 +1,34 @@
+INIT:
+	IN 10H 
+	MVI E,FEH 	
+			
+START:
+	LDA 2000H 	
+	RRC		
+			
+			
+	JNC START	
+	RLC		
+	RLC 		
+			
+	JNC LEFT	
+	JMP RIGHT	
+LEFT:
+	MOV A,E	
+	STA 3000H	
+	RLC		
+			
+	MOV E,A	
+
+	JMP START	
+
+
+RIGHT:
+	MOV A,E	
+	STA 3000H	
+	RRC 		
+			
+	MOV E,A	
+
+	JMP START	
+END

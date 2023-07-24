@@ -1,0 +1,139 @@
+START:
+    IN 10H
+    MVI A,00H
+    LXI H,0900H
+    MVI B,06H
+
+POPULATE_MEMORY:
+    MOV M,A
+    INX H
+    DCR B
+    JNZ POPULATE_MEMORY
+
+LINE_1:
+    MVI A,FEH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,86H
+    JZ PRINT
+    CPI 05H
+    MVI C,85H
+    JZ PRINT
+
+LINE_2:
+    MVI A,FDH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,84H
+    CPI 05H
+    MVI C,80H
+    JZ PRINT
+    CPI 03H
+    MVI C,82H
+    JZ PRINT
+
+LINE_3:
+    MVI A,FBH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,00H
+    CPI 05H
+    MVI C,83H
+    JZ PRINT
+    CPI 03H
+    MVI C,81H
+    JZ PRINT
+
+LINE_4:
+    MVI A,F7H
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,01H
+    CPI 05H
+    MVI C,02H
+    JZ PRINT
+    CPI 03H
+    MVI C,03H
+    JZ PRINT
+
+LINE_5:
+    MVI A,EFH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,04H
+    CPI 05H
+    MVI C,05H
+    JZ PRINT
+    CPI 03H
+    MVI C,06H
+    JZ PRINT
+    
+LINE_6:
+    MVI A,DFH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,07H
+    CPI 05H
+    MVI C,08H
+    JZ PRINT
+    CPI 03H
+    MVI C,09H
+    JZ PRINT
+    
+LINE_7:
+    MVI A,BFH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,0AH
+    CPI 05H
+    MVI C,0BH
+    JZ PRINT
+    CPI 03H
+    MVI C,0CH
+    JZ PRINT
+
+LINE_8:
+    MVI A,7FH
+    STA 2800H
+    LDA 1800H
+    ANI 07H
+    CPI 06H
+    MVI C,0DH
+    CPI 05H
+    MVI C,0EH
+    JZ PRINT
+    CPI 03H
+    MVI C,0FH
+    JZ PRINT
+    JMP START
+
+PRINT:
+    LXI H,0904F
+    MVI A,0FH
+    ANA C
+    LXI H,0904H
+    MOV M,A
+    MVI A,F0H
+    ANA C
+    LXI H,0905H
+    MOV M,A
+    LXI D,0900H
+    CALL STDM
+    CALL DCD
+    JMP START
+END
+
