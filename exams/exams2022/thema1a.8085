@@ -1,0 +1,26 @@
+; μΥ-Σ με 8-bit θύρες:
+; είσοδος στη θέση 20H(ai) και έξοδος στη θέση 30H(b1)
+; προσομοιώστε τη λογική συνάρτηση b1 = a3*a4 + a5*a6*a7*a5 
+
+    IN 20H
+    MOV B,A
+    ANI 00001100b
+    CPI 00001100b
+    JZ B_1
+    MOV A,B
+    ANI 11110000b
+    CPI 11110000b
+    JZ B_1
+B_0:
+    MVI E,00H 
+    JMP EXIT
+B_1:
+    MVI E,01H
+    JMP EXIT
+EXIT:
+    MOV A,E
+    OUT 30H
+    HLT 
+
+
+

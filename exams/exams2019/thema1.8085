@@ -1,0 +1,24 @@
+INIT:
+    MOV A,B
+    MVI C,07H
+
+MAIN:
+    DCR C
+    JZ TIME_TO_RECONSTRUCT
+    RAL A
+    JC CARRY_IS_ACTIVATED
+
+CARRY_IS_ACTIVATED:
+    MOV B,A
+    CPI 80H
+    JZ MAIN
+    CMC
+    MOV A,B
+    JMP MAIN
+
+TIME_TO_RECONSTRUCT:
+    RAL
+    RAL
+    HLT
+
+

@@ -1,0 +1,31 @@
+MOVING MACRO n
+    PUSH PSW
+    MOV A,n
+    CPI 00H
+    JZ EQUAL_C
+    CPI 01H
+    JZ EQUAL_D
+    CPI 02H
+    JZ EQUAL_E 
+    CPI 03H
+    JZ EQUAL_H
+
+EQUAL_C:
+    MOV C,A
+    JMP EXIT
+
+EQUAL_D:
+    MOV D,A
+    JMP EXIT
+
+EQUAL_E:
+    MOV E,A
+    JMP EXIT
+
+EQUAL_H:
+    MOV H,A
+
+EXIT:
+    POP PSW
+    ENDM
+    

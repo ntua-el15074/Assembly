@@ -1,0 +1,55 @@
+INIT:                                                                                   
+    IN 20H
+    MVI C,14H
+    MOV B,A
+
+MAIN:
+    ANI 02H
+    CPI 00H
+    JZ CAR_ENTERING_PARKING
+    MOV A,B
+    ANI 01H
+    CPI 00H
+    JZ CAR_LEAVING_PARKING
+    MOV A,B
+    ANI 80H
+    CPI 80H
+    JZ INIT
+    MOV C,A
+    CPI 0AH
+    JNC DISPLAY_NUMBER
+    MVI C,09H
+
+DISPLAY_NUMBER:
+    MOV A,C
+    RLC
+    RLC
+    RLC
+    RLC
+    ANI F0H
+    
+DISPLAY:
+    OUT 30H 
+    JMP MAIN
+
+CAR_LEAVING_PARKING:
+    IN 20H
+    ANI 01H
+    CPI 00H
+    JZ CAR_LEAVING_PARKING
+    INR C
+    JMP MAIN
+
+CAR_ENTERING_PARKING:
+    IN 20H
+    ANI 02H
+    CPI 00H
+    JZ CAR_ENTERING_PARKING
+    DCR C
+    JMP MAIN
+
+
+
+
+
+

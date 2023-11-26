@@ -1,0 +1,22 @@
+    in 20h
+    mvi c,07h
+
+main:
+    rar
+    jc populate_rest
+    dcr c
+    jz finish_up
+    jmp main
+
+populate_rest:
+    rar
+    stc
+    dcr c
+    jz finish_up
+    jmp populate_rest
+
+finish_up:
+    rar
+    rar
+    out 30h
+    hlt

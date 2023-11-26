@@ -1,0 +1,47 @@
+main:
+    in 20h
+    mov b,a
+    ani 0b00001100
+    cpi 0b00000100
+    jz we_are_at_closed_gate
+    cpi 0b00001000
+    jz we_are_at_open_gate
+    ; door is moving
+
+we_are_at_open_gate:
+    mvi a, 00h
+    out 30h
+    in 20h
+    ani 0b10000010
+    cpi 0b10000000
+    jz stop_moving
+    cpi 0b00000010
+    jz close_gate
+    jmp we_are_at_open_gate
+
+we_are_at_closed_gate:
+    mvi a, 00h
+    out 30h
+    in 20h
+    ani 0b10000001
+    cpi 0b10000000
+    jz stop_moving
+    cpi 0b00000001
+    jz open_gate
+    jmp we_are_at_closed_gate
+
+stop_moving:
+    mvi a, 00h
+    out 30h
+    jmp main
+
+close_gate:
+    mvi a, 01h
+    out 30h
+    jmp main
+
+open_gate:
+    mvi a, 02h
+    out 30h
+    jmp main
+
